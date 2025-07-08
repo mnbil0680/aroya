@@ -251,7 +251,7 @@ body {
 /* Ship Section */
 .ship-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 10fr 9fr;
     gap: 3rem;
     align-items: center;
 }
