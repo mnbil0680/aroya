@@ -27,8 +27,8 @@
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="./imgs/logo/aroya.png" />
-
-        <!-- Preconnect to Google Fonts -->
+        
+        <!-- Web App Preconnect to Google Fonts -->
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -127,8 +127,8 @@
                 </button>
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#ship">السفينة</a></li>
                     <li><a href="#travels">الرحلات</a></li>
+                    <li><a href="#ship">السفينة</a></li>
                     <li><a href="#gallery">المعرض</a></li>
                     <li><a href="#faq">الأسئلة الشائعة</a></li>
                 </ul>
@@ -890,29 +890,7 @@
                 });
             });
 
-            // Search form submission
-            const searchForm = document.querySelector(".search-form");
-            searchForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const formData = new FormData(searchForm);
-
-                // Basic validation
-                const destination = formData.get("destination");
-                const departureDate = formData.get("departure-date");
-                const duration = formData.get("duration");
-                const guests = formData.get("guests");
-
-                if (!destination || !departureDate || !duration || !guests) {
-                    alert("يرجى ملء جميع الحقول المطلوبة");
-                    return;
-                }
-
-                // Simulate search results
-                alert(
-                    `تم البحث عن رحلة إلى ${destination} لمدة ${duration} لعدد ${guests} في تاريخ ${departureDate}`
-                );
-            });
-
+           
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener("click", function (e) {
@@ -927,40 +905,42 @@
                         });
 
                         // Close mobile menu after click
-                        navLinks.classList.remove("active");
-                        menuToggle.setAttribute("aria-expanded", "false");
+                        const navLinksElement = document.querySelector(".nav-links");
+                        const menuToggleElement = document.querySelector(".menu-toggle");
+                        if (navLinksElement && menuToggleElement) {
+                            navLinksElement.classList.remove("active");
+                            menuToggleElement.setAttribute("aria-expanded", "false");
+                        }
                     }
                 });
             });
 
-            // Gallery item click handler
-            document.querySelectorAll(".gallery-item").forEach((item) => {
-                item.addEventListener("click", () => {
-                    alert(
-                        "عذراً، المعرض قيد التطوير. سيتم إضافة الصور قريباً!"
-                    );
-                });
-
-                // Keyboard support for gallery items
-                item.addEventListener("keydown", (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        item.click();
-                    }
-                });
-            });
-
-            // Navbar scroll effect
+            
+             // Navbar scroll effect with throttling
             let lastScrollY = window.scrollY;
-            window.addEventListener("scroll", () => {
+            let ticking = false;
+            function updateNavbar() {
                 const navbar = document.querySelector(".navbar");
-                if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                    navbar.style.transform = "translateY(-100%)";
-                } else {
-                    navbar.style.transform = "translateY(0)";
+                if (navbar) {
+                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                        navbar.style.transform = "translateY(-100%)";
+                    } else {
+                        navbar.style.transform = "translateY(0)";
+                    }
                 }
                 lastScrollY = window.scrollY;
-            });
+                ticking = false;
+            }
+            
+            // Add scroll event listener with proper error handling
+            if (typeof window !== 'undefined') {
+                window.addEventListener("scroll", () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateNavbar);
+                        ticking = true;
+                    }
+                });
+            }
 
             // Add loading states for better UX
             document.addEventListener("DOMContentLoaded", () => {
@@ -989,29 +969,10 @@
                 }
             });
 
-            // Intersection Observer for animations (performance-friendly)
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px",
-            };
+            
+    </script>
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
-                    }
-                });
-            }, observerOptions);
+        
 
-            // Observe sections for scroll animations
-            document.querySelectorAll(".section").forEach((section) => {
-                section.style.opacity = "0";
-                section.style.transform = "translateY(20px)";
-                section.style.transition =
-                    "opacity 0.6s ease, transform 0.6s ease";
-                observer.observe(section);
-            });
-        </script>
     </body>
-</html>
+    </html>
