@@ -25,18 +25,25 @@
 
         <title>أرويا كروز</title>
 
+        <style>
+            @import url("/fonts/cairo-font/cairo.css");
+            body {
+                font-family: "Cairo", sans-serif;
+            }
+        </style>
+
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="./imgs/logo/aroya.png" />
 
         <!-- Preconnect to Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap"
-            rel="stylesheet"
-        />
 
-        <link rel="stylesheet" href="./css/style.css" />
+        <link
+            rel="preload"
+            href="style.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript><link rel="stylesheet" href="style.css" /></noscript>
 
         <!-- For Search Box Engine -->
         <link
