@@ -32,10 +32,8 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap"
-            rel="stylesheet"
-        />
+
+        <link rel="stylesheet" href="./css/cairo.css">
 
         <link rel="stylesheet" href="./css/style.css" />
         <!-- For Search Box Engine -->
@@ -44,6 +42,7 @@
             href="./css/searchBox/cruise-search-form-option-6.css"
         />
         <link rel="stylesheet" href="./css/searchBox/font-awesome.min.css" />
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /> -->
 
         <script
             language="javascript"
@@ -942,20 +941,7 @@
                 });
             }
 
-            // Add loading states for better UX
-            document.addEventListener("DOMContentLoaded", () => {
-                // Add loaded class to body for any CSS animations
-                document.body.classList.add("loaded");
-
-                // Set minimum date for departure date input
-                const departureDateInput =
-                    document.getElementById("departure-date");
-                const today = new Date();
-                const tomorrow = new Date(today);
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                departureDateInput.min = tomorrow.toISOString().split("T")[0];
-            });
-
+           
             // Enhanced keyboard navigation
             document.addEventListener("keydown", (e) => {
                 // ESC key closes mobile menu
