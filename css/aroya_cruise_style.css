@@ -145,7 +145,7 @@ body {
 .hero {
     height: 75vh;
     background: linear-gradient(rgba(7, 16, 65, 0.4), rgba(7, 16, 65, 0.4)),
-        url("../imgs/hero.svg");
+        url("../imgs/aroya_cruise_hero.svg");
     background-size: cover;
     background-position: center;
     display: flex;
